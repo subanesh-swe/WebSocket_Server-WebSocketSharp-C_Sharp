@@ -3,6 +3,49 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+################################################################################
+## Git ignore by subanesh
+
+## unwanted files
+/bin
+/obj
+.vs
+.vscode
+*.config
+*.csproj
+*.csproj.user
+*.njsproj
+*.njsproj.user
+*.esproj
+*.esproj.user
+
+# # temp, to ignore while creating Repository
+# /src
+# *.js
+
+# node_modules # already present
+
+# not important
+obj  
+
+# protect environment variables (mongoose,.,. ...)
+.env
+
+# In a .gitignore file, you can use three different types of patterns:
+# 
+# name: This will ignore any file or directory with the name “name”.
+# .name: This will ignore any file or directory with the name “.name”.
+# *.name: This will ignore any file or directory that ends with “.name”.
+
+# \.name: This will ignore any file
+
+## Git ignore by subanesh --ends
+################################################################################
+
+
+
+
 # User-specific files
 *.rsuser
 *.suo
