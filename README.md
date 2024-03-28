@@ -1,6 +1,5 @@
 # WebSocket_Server-WebSocketSharp-C_Sharp
 
-
 ## Welcome to WebSocket_Server! ##
 
 ## Acknowledgments
@@ -11,7 +10,7 @@ This project utilizes the "websocket-sharp" library, which provides WebSocket su
 
 "websocket-sharp" repository: [Link](https://github.com/sta/websocket-sharp)
 
-The "websocket-sharp" library is provided under the [MIT License](https://github.com/sta/websocket-sharp/blob/master/LICENSE). Please refer to its license file for more details.
+The "websocket-sharp" library is provided under the [MIT License](https://github.com/sta/websocket-sharp/blob/master/LICENSE.txt). Please refer to its license file for more details.
 
 ### Install websocket-sharp library ###
 
@@ -30,6 +29,15 @@ websocket-sharp is available on the [NuGet Gallery](http://www.nuget.org), as st
 You can add websocket-sharp to your project with the NuGet Package Manager, by using the following command in the Package Manager Console.
 
     PM> Install-Package WebSocketSharp -Pre
+
+
+## People
+
+The original author of WebSocket_Server-WebSocketSharp-C_Sharp is [Subanesh](https://github.com/subanesh-swe)
+
+The current lead maintainer is [Subanesh](https://github.com/subanesh-swe)
+
+[List of all contributors](https://github.com/subanesh-swe/graphs/contributors)
 
 ## License
 
