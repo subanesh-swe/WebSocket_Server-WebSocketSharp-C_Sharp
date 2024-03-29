@@ -33,6 +33,33 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
                     Console.WriteLine("- {0}{1}", serverUrl, path);
             }
 
+            WebSocketServiceHost host;
+            var getHostSuccess = wssv.WebSocketServices.TryGetServiceHost("/", out host);
+            if (getHostSuccess != true)
+            {
+                Console.WriteLine("Error getting Host...");
+            }
+
+            // to send msg to all clients
+            host.Sessions.Broadcast(msg);
+
+            //to send msg to particulat client, id is needed
+            host.Sessions.SendTo(string data, string id);
+            host.Sessions.SendTo(msg, Database.Get(name));
+
+            // to send msg to one client
+            var msg = "hello there";
+            string name = "SUBANESHs-ESP8266-STA-2";
+            if (Database.isAvailable(name))
+            {
+                host.Sessions.SendTo(msg, Database.Get(name));
+                Console.WriteLine(name + " -> Msg:[" + msg + "] Sended...");
+            }
+            else
+            {
+                Console.WriteLine(name + " -> Not Connected...");
+            }
+
             Console.WriteLine("\nPress Enter key to stop the server...");
             Console.ReadLine();
             // // Console.ReadKey();
