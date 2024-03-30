@@ -1,4 +1,5 @@
-﻿using System;
+﻿using C_Sharp_WebSocket_Server;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,24 +41,62 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
                 Console.WriteLine("Error getting Host...");
             }
 
-            // to send msg to all clients
-            host.Sessions.Broadcast(msg);
+            // // to send msg to all clients
+            //host.Sessions.Broadcast(msg);
 
-            //to send msg to particulat client, id is needed
-            host.Sessions.SendTo(string data, string id);
-            host.Sessions.SendTo(msg, Database.Get(name));
+            // //to send msg to particulat client, id is needed
+            //host.Sessions.SendTo(string data, string id);
+            //host.Sessions.SendTo(msg, Database.Get(name));
 
-            // to send msg to one client
-            var msg = "hello there";
-            string name = "SUBANESHs-ESP8266-STA-2";
-            if (Database.isAvailable(name))
+            // // to send msg to one client
+            //var msg = "hello there";
+            //string name = "SUBANESHs-ESP8266-STA-2";
+            //if (Database.isAvailable(name))
+            //{
+            //    host.Sessions.SendTo(msg, Database.Get(name));
+            //    Console.WriteLine(name + " -> Msg:["+ msg +"] Sended...");
+            //} 
+            //else
+            //{
+            //    Console.WriteLine(name + " -> Not Connected...");
+            //}
+
+            // // to send msg to all clients in database
+
+            //var msg = "hello there";
+            byte[] rawMsg = { (int)'L', (int)'A', (int)'K', (int)2, (int)1, (int)'D', (int)8, (int)217 }; // 76 65 75 2 1 68 8 217
+            string strMsg = "";
+            for (int x = 0; x < rawMsg.Length; x++)
             {
-                host.Sessions.SendTo(msg, Database.Get(name));
-                Console.WriteLine(name + " -> Msg:[" + msg + "] Sended...");
+                //Console.WriteLine(rayMsg[x]);
+                strMsg += ((int)rawMsg[x]).ToString() + " ";
             }
-            else
+            while (getHostSuccess)
             {
-                Console.WriteLine(name + " -> Not Connected...");
+                try
+                {
+                    Dictionary<string, string> DatabaseCopy = new Dictionary<string, string>(Database.clientDict);
+                    foreach (KeyValuePair<string, string> entry in DatabaseCopy)
+                    {
+                        // // do something with entry.Value or entry.Key
+                        var name = entry.Key;
+                        var id = entry.Value;
+                        if (Database.isAvailable(name))// && host.Sessions.PingTo(id))
+                        {
+                            host.Sessions.SendTo(rawMsg, Database.Get(name));
+                            Console.WriteLine(name + " -> Msg:[" + strMsg + "] Sended...");
+                        }
+                        else
+                        {
+                            Console.WriteLine(name + " -> Not Connected...");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Main Program: \n\tCatch Exception:" + ex.ToString());
+                }
+                System.Threading.Thread.Sleep(2000);
             }
 
             Console.WriteLine("\nPress Enter key to stop the server...");
