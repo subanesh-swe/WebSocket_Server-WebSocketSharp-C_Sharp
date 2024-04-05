@@ -17,6 +17,25 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
         private string _id;
         private static int _number = 0;
         private string _prefix;
+
+        public Home()
+        {
+            _prefix = "anon#";
+        }
+
+        public string Prefix
+        {
+            get
+            {
+                return _prefix;
+            }
+
+            set
+            {
+                _prefix = !value.IsNullOrEmpty() ? value : "anon#";
+            }
+        }
+        
         protected override void OnMessage(MessageEventArgs e)
         {
             // string
