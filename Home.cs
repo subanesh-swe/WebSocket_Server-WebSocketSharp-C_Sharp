@@ -36,6 +36,21 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
             }
         }
         
+        protected NameValueCollection QueryString
+        {
+            get
+            {
+                if (Context == null)
+                {
+                    var msg = "The session has not started yet.";
+
+                    throw new InvalidOperationException(msg);
+                }
+
+                return Context.QueryString;
+            }
+        }
+
         protected override void OnMessage(MessageEventArgs e)
         {
             // string
