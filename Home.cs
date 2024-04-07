@@ -35,7 +35,7 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
                 _prefix = !value.IsNullOrEmpty() ? value : "anon#";
             }
         }
-        
+
         protected NameValueCollection QueryString
         {
             get
@@ -49,6 +49,13 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
 
                 return Context.QueryString;
             }
+        }
+
+        private string getName()
+        {
+            var name = QueryString["name"];
+
+            return !name.IsNullOrEmpty() ? name : _prefix + getNumber();
         }
 
         protected override void OnMessage(MessageEventArgs e)
