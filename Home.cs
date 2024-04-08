@@ -65,9 +65,9 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            // string
+            // to get string data
             // var strMsg = e.Data;
-            // byte
+            // to get byte data
             var rawMsg = e.RawData;
             // do something with this data (from client)
 
