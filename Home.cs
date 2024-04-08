@@ -58,6 +58,11 @@ namespace WebSocket_Server_WebSocketSharp_C_Sharp
             return !name.IsNullOrEmpty() ? name : _prefix + getNumber();
         }
 
+        private static int getNumber()
+        {
+            return Interlocked.Increment(ref _number);
+        }
+
         protected override void OnMessage(MessageEventArgs e)
         {
             // string
