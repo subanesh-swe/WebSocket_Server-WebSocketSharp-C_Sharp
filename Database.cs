@@ -22,5 +22,17 @@ namespace C_Sharp_WebSocket_Server
             clientDict.Remove(key);
         }
 
+        public static string Get(string key)
+        {
+            if (isAvailable(key) == true)
+                return clientDict[key];
+            return null;
+
+        }
+
+        public static bool isAvailable(string key)
+        {
+            return clientDict.ContainsKey(key);
+        }
     }
 }
